@@ -1,22 +1,23 @@
 <template>
     <v-app>
-        <v-col>
-            <v-btn class="primary" @click="addModal=true">
-                <v-icon>mdi-plus</v-icon>
-                New User
-            </v-btn>
-            <Modal v-model="addModal" title="Add New User" :closable="false" :mask-closable="false">
-                <p>Content of dialog</p>
-                <p>Content of dialog</p>
-                <p>Content of dialog</p>
+        <v-row>
+            <v-col>
+                <v-btn class="primary" @click="addModal=true">
+                    <v-icon>mdi-plus</v-icon>
+                    New User
+                </v-btn>
+                <Modal v-model="addModal" title="Add New User" :closable="false" :mask-closable="false">
+                    <p>Content of dialog</p>
+                    <p>Content of dialog</p>
+                    <p>Content of dialog</p>
 
-                <div slot="footer">
-                    <Button type="default" @click="addModal=false">Close</Button>
-                    <Button type="primary">Add User</Button>
-                </div>
-            </Modal>
-        </v-col>
-
+                    <div slot="footer">
+                        <Button type="default" @click="addModal=false">Close</Button>
+                        <Button type="primary">Add User</Button>
+                    </div>
+                </Modal>
+            </v-col>
+        </v-row>
     </v-app>
 </template>
 <script>
