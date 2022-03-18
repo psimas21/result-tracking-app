@@ -2,7 +2,7 @@
     <v-app>
         <v-row>
             <v-col>
-                <v-btn class="primary" @click="addModal=true">
+                <v-btn class="primary text-capitalize" @click="addModal=true">
                     <v-icon>mdi-plus</v-icon>
                     New User
                 </v-btn>
@@ -12,7 +12,7 @@
                     <p>Content of dialog</p>
 
                     <div slot="footer">
-                        <Button type="default" @click="addModal=false">Close</Button>
+                        <Button type="warning" @click="addModal=false">Close</Button>
                         <Button type="primary">Add User</Button>
                     </div>
                 </Modal>

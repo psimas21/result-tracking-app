@@ -24,4 +24,5 @@ Route::any('/{any}', function () {
 // CODES FOR ROLES ROUTE
 Route::post('app/create_role','AdminController@addRole');
 Route::get('app/get_roles','AdminController@getRole');
+Route::post('app/disable_role','AdminController@disableRole');
 // END CODES FOR ROLES ROUTE

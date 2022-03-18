@@ -9,10 +9,10 @@ export default{
             try{
                 // Send a POST request
                 return await axios({
-                    // Headers: {host: '127.0.0.1:8000'},
                     method: method,
                     url: url,
                     data: dataObj,
+                    completed: false
                 });
             }
             catch(e){
