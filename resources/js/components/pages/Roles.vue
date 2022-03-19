@@ -18,7 +18,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(role, i) in roles" :key="role.id" v-if="roles.length">
+                            <tr v-for="(role, i) in roles" :key="i" v-if="roles.length">
                                 <td>{{i + 1}}</td>
                                 <td>{{role.role}}</td>
                                 <td>active</td>
@@ -69,7 +69,6 @@
                 disableData: {
                     role: ''
                 },
-                roles: [],
                 index: -1
             }
         },
@@ -115,15 +114,5 @@
                 this.index = index
             }
         },
-        async created(){
-            const res = await this.callApi('get', 'app/get_roles')
-            if (res.status==200) {
-                this.roles = res.data
-            }
-            else{
-                this.swr()
-                console.log(res)
-            }
-        }
     }
 </script>

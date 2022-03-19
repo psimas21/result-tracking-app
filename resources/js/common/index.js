@@ -1,7 +1,7 @@
 export default{
     data(){
         return{
-
+            roles: [],
         }
     },
     methods: {
@@ -52,4 +52,13 @@ export default{
             });
         }
     },
+    async created(){
+        const res = await this.callApi('get', 'app/get_roles')
+        if (res.status==200) {
+            this.roles = res.data
+        }
+        else{
+            this.swr()
+        }
+    }
 }

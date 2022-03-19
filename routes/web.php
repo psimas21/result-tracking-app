@@ -26,3 +26,8 @@ Route::post('app/create_role','AdminController@addRole');
 Route::get('app/get_roles','AdminController@getRole');
 Route::post('app/disable_role','AdminController@disableRole');
 // END CODES FOR ROLES ROUTE
+
+// CODES FOR ROLES ROUTE
+Route::post('app/create_user','AdminController@addUser');
+Route::get('app/get_users','AdminController@getUser');
+// END CODES FOR ROLES ROUTE
