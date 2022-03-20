@@ -18,10 +18,10 @@
                                 <td>{{ row.index + 1}}</td>
                                 <td>{{ row.item.name }}</td>
                                 <td class="text-xs-right">{{ row.item.phone_no }}</td>
-                                <td class="text-xs-right">{{ row.item.role_id }}</td>
-                                <td class="text-xs-right">{{ row.item.status }}</td>
+                                <td class="text-xs-right">{{ row.item.role }}</td>
+                                <td class="text-xs-right">{{ statusText(row.item.status) }}</td>
                                 <td class="text-xs-right">
-                                    <v-btn  class="info text-capitalize" x-small>Edit</v-btn>
+                                    <v-btn  class="error text-capitalize" x-small>Edit</v-btn>
                                 </td>
                             </tr>
                         </template>
@@ -99,6 +99,7 @@
                 const res = await this.callApi('post', 'app/create_user', this.data)
                 if(res.status == 201){
                     this.users.unshift(res.data)
+                    console.log(res.data)
                     this.s('User has been added successfully!')
                     this.addModal = false
                     this.data.name = ''

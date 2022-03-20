@@ -20,11 +20,15 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('phone_no')->unique();
-            $table->tinyInteger('role_id')->default(0);
+            $table->unsignedBigInteger('role_id')->nullable();
             $table->rememberToken();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
+        Schema::table('users', function (Blueprint $table){
+            $table->foreign('role_id')->references('id')->on('roles');
+         });
+
     }
 
     /**

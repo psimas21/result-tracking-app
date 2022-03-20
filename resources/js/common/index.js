@@ -20,6 +20,14 @@ export default{
                 return e.response
             }
         },
+        statusText(i){
+            if (i==1) {
+                return "active"
+            }
+            else{
+                return "inactive"
+            }
+        },
 
         i (desc, title="hey") {
             this.$Notice.info({
