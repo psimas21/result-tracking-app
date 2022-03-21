@@ -46,7 +46,7 @@ class AdminController extends Controller
             'role_id' => 'required'
         ]);
         $password = bcrypt($req->password);
-        return User::create([
+        return  User::create([
             'name' => $req->name,
             'email' => $req->email,
             'password' => $password,
@@ -56,8 +56,7 @@ class AdminController extends Controller
         ]);
     }
     public function getUser(){
-        // return User::orderBy('id', 'desc')->with('role')->get();
-        return User::join('roles', 'users.role_id', '=', 'roles.id')->get();
+        return User::orderBy('id', 'desc')->with('role')->get();
     }
     // END CODES TO MANAGE USERS
 }

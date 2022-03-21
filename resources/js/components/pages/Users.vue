@@ -18,7 +18,7 @@
                                 <td>{{ row.index + 1}}</td>
                                 <td>{{ row.item.name }}</td>
                                 <td class="text-xs-right">{{ row.item.phone_no }}</td>
-                                <td class="text-xs-right">{{ row.item.role }}</td>
+                                <td class="text-xs-right">{{ row.item.role.role }}</td>
                                 <td class="text-xs-right">{{ statusText(row.item.status) }}</td>
                                 <td class="text-xs-right">
                                     <v-btn  class="error text-capitalize" x-small>Edit</v-btn>
@@ -98,7 +98,7 @@
                 if (this.data.role_id == 0) return this.e('role is required!')
                 const res = await this.callApi('post', 'app/create_user', this.data)
                 if(res.status == 201){
-                    this.users.unshift(res.data)
+                    this.fetchUser()
                     console.log(res.data)
                     this.s('User has been added successfully!')
                     this.addModal = false
@@ -119,16 +119,19 @@
                         this.swr()
                     }
                 }
+            },
+            async fetchUser(){
+                const res = await this.callApi('get', 'app/get_users')
+                if (res.status==200) {
+                    this.users = res.data
+                }
+                else{
+                    this.swr()
+                }
             }
         },
-        async created(){
-            const res = await this.callApi('get', 'app/get_users')
-            if (res.status==200) {
-                this.users = res.data
-            }
-            else{
-                this.swr()
-            }
+        created(){
+            this.fetchUser()
         }
     }
 </script>
