@@ -30,4 +30,5 @@ Route::post('app/disable_role','AdminController@disableRole');
 // CODES FOR USER ROUTEs
 Route::post('app/create_user','AdminController@addUser');
 Route::get('app/get_users','AdminController@getUser');
+Route::post('app/edit_user','AdminController@editUser');
 // END CODES FOR ROLES ROUTE

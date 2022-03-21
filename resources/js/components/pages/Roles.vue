@@ -49,7 +49,7 @@
                     <Input v-model="data.role" placeholder="Enter Role name.." :border="false" />
 
                     <div slot="footer">
-                        <Button type="warning" @click="addModal=false">Close</Button>
+                        <Button type="default" @click="addModal=false">Close</Button>
                         <Button type="primary" @click="addRole">Add Role</Button>
                     </div>
                 </Modal>

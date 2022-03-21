@@ -1,5 +1,5 @@
 <template>
-  <v-app id="inspire">
+  <v-app id="inspire" dark>
     <v-navigation-drawer v-model="drawer" app>
       <!-- Below are the content of the drawer -->
       <v-list>

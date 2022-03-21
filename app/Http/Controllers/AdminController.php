@@ -58,5 +58,18 @@ class AdminController extends Controller
     public function getUser(){
         return User::orderBy('id', 'desc')->with('role')->get();
     }
+    public function editUser(Request $req){
+        // validation
+        $this->validate($req,[
+            'name' => 'required',
+            'phone_no' => 'required',
+        ]);
+        return User::where('id', $req->id)->update([
+            'name' => $req->name,
+            'phone_no' => $req->phone_no,
+            'role_id' => $req->role_id,
+            'status' => $req->status
+        ]);
+    }
     // END CODES TO MANAGE USERS
 }
