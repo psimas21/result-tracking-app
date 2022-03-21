@@ -56,7 +56,7 @@ class AdminController extends Controller
         ]);
     }
     public function getUser(){
-        // return User::orderBy('id', 'desc')->with('role')->get();
+        //return User::with('user')->orderBy('id', 'desc')->get();
         return User::join('roles', 'users.role_id', '=', 'roles.id')->get();
     }
     // END CODES TO MANAGE USERS
