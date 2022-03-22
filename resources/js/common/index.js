@@ -2,6 +2,7 @@ export default{
     data(){
         return{
             roles: [],
+            parties: [],
         }
     },
     methods: {
@@ -61,6 +62,7 @@ export default{
         }
     },
     async created(){
+        // fetchRoles
         const res = await this.callApi('get', 'app/get_roles')
         if (res.status==200) {
             this.roles = res.data
@@ -68,5 +70,16 @@ export default{
         else{
             this.swr()
         }
+        // End fetchRole
+
+        // fetchRoles
+        const partyRes = await this.callApi('get', 'app/get_parties')
+        if (partyRes.status==200) {
+            this.parties = partyRes.data
+        }
+        else{
+            this.swr()
+        }
+        // End fetchRole
     }
 }

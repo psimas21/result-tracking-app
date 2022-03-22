@@ -52,6 +52,7 @@
         { title: 'Dashboard', icon: 'mdi-view-dashboard', route: 'home' },
         { title: 'Manage Roles', icon: 'mdi-order-bool-descending-variant', route: 'roles' },
         { title: 'Manage Users', icon: 'mdi-account-cog', route: 'users' },
+        { title: 'Manage Parties', icon: 'mdi-diving-scuba-flag', route: 'parties' },
         ]
       }
     },

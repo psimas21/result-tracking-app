@@ -32,3 +32,9 @@ Route::post('app/create_user','AdminController@addUser');
 Route::get('app/get_users','AdminController@getUser');
 Route::post('app/edit_user','AdminController@editUser');
 // END CODES FOR ROLES ROUTE
+
+// CODES FOR ROLES ROUTE
+Route::post('app/create_party','AdminController@addParty');
+Route::get('app/get_parties','AdminController@getParty');
+Route::post('app/disable_party','AdminController@disableParty');
+// END CODES FOR ROLES ROUTE

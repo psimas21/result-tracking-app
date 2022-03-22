@@ -15,6 +15,7 @@
 import Dashboard from './components/pages/Dashboard'
 import Roles from './components/pages/Roles'
 import Users from './components/pages/Users'
+import Parties from './components/pages/Parties'
 
   const router = new VueRouter({
      mode: 'history',
@@ -33,6 +34,11 @@ import Users from './components/pages/Users'
              path: '/',
              name: 'users',
              component: Users
+         },
+         {
+             path: '/',
+             name: 'parties',
+             component: Parties
          },
      ],
   });
