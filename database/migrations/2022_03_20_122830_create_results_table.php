@@ -16,7 +16,6 @@ class CreateResultsTable extends Migration
         Schema::create('results', function (Blueprint $table) {
             $table->id();
             $table->integer('total_votes_casted');
-            $table->integer('candidate_votes_obtained');
             $table->unsignedBigInteger('polling_unit_id')->nullable();
             $table->unsignedBigInteger('ward_id')->nullable();
             $table->unsignedBigInteger('party_id')->nullable();

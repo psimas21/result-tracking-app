@@ -77,7 +77,7 @@
                 if (this.data.role.trim() == '') return this.e('Role is required!')
                 const res = await this.callApi('post', 'app/create_role', this.data)
                 if(res.status == 201){
-                    this.roles.unshift(res.data)
+                    this.fetchRoles();
                     this.s('Role has been added successfully!')
                     this.addModal = false
                     this.data.role = ''
@@ -96,7 +96,7 @@
             async disableRole(){
                 const res = await this.callApi('post', 'app/disable_role', this.disableData)
                 if(res.status == 200){
-                    this.roles.splice(this.index, 1)
+                    this.fetchRoles();
                     this.s('Role disabled successfully!')
                     this.disableModal = false
                 }
@@ -114,5 +114,8 @@
                 this.index = index
             }
         },
+        created(){
+            this.fetchRoles();
+        }
     }
 </script>

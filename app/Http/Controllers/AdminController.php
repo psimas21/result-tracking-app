@@ -2,40 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Party;
-use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
-    // CODES TO MANAGE ROLES
-    public function addRole(Request $req){
-        // validation
-        $this->validate($req,[
-            'role' => 'required'
-        ]);
-        return Role::create([
-            'role' => $req->role
-        ]);
-    }
-
-    public function getRole(){
-        $status = 1;
-        return Role::orderBy('id', 'desc')->where('status', $status)->get();
-    }
-
-    public function disableRole(Request $req){
-        // validation
-        $this->validate($req,[
-            'role' => 'required'
-        ]);
-        return Role::where('id', $req->id)->update([
-            'status' => 0
-        ]);
-    }
-    // END CODES TO MANAGE ROLES
-
     // CODES TO MANAGE USERS
     public function addUser(Request $req){
         // validation
@@ -44,7 +16,8 @@ class AdminController extends Controller
             'email' => 'bail|required|email',
             'password' => 'bail|required|min:6',
             'phone_no' => 'required',
-            'role_id' => 'required'
+            'role_id' => 'required',
+            'lga_id' => 'required',
         ]);
         $password = bcrypt($req->password);
         return  User::create([
@@ -53,11 +26,19 @@ class AdminController extends Controller
             'password' => $password,
             'phone_no' => $req->phone_no,
             'role_id' => $req->role_id,
+            'lga_id' => $req->lga_id,
 
         ]);
     }
     public function getUser(){
-        return User::orderBy('id', 'desc')->with('role')->get();
+
+        $users = DB::table('users')
+            ->join('roles', 'users.role_id', '=', 'roles.id')
+            ->join('lgas', 'users.lga_id', '=', 'lgas.id')
+            ->select('users.*', 'roles.role', 'lgas.lga')
+            ->get();
+
+            return $users;
     }
     public function editUser(Request $req){
         // validation
@@ -74,30 +55,5 @@ class AdminController extends Controller
     }
     // END CODES TO MANAGE USERS
 
-    // CODES TO MANAGE PARTIES
-    public function addParty(Request $req){
-        // validation
-        $this->validate($req,[
-            'party_name' => 'required'
-        ]);
-        return Party::create([
-            'party_name' => $req->party_name
-        ]);
-    }
 
-    public function getParty(){
-        $status = 1;
-        return Party::orderBy('id', 'desc')->where('status', $status)->get();
-    }
-
-    public function disableParty(Request $req){
-        // validation
-        $this->validate($req,[
-            'party_name' => 'required'
-        ]);
-        return Party::where('id', $req->id)->update([
-            'status' => 0
-        ]);
-    }
-    // END CODES TO MANAGE PARTIES
 }

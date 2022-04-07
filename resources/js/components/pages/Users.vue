@@ -18,7 +18,8 @@
                                 <td>{{ row.index + 1}}</td>
                                 <td>{{ row.item.name }}</td>
                                 <td class="text-xs-right">{{ row.item.phone_no }}</td>
-                                <td class="text-xs-right">{{ row.item.role.role }}</td>
+                                <td class="text-xs-right">{{ row.item.role }}</td>
+                                <td class="text-xs-right">{{ row.item.lga }}</td>
                                 <td class="text-xs-right">{{ statusText(row.item.status) }}</td>
                                 <td class="text-xs-right">
                                     <v-btn  class="error text-capitalize" x-small @click="showEditModal(row.item, row.index)">Edit</v-btn>
@@ -52,6 +53,13 @@
                             <template>
                                 <Select class="form-control" v-model="data.role_id" required placeholder="select role">
                                     <Option v-for="(role, i) in roles" :key="i" v-bind:value="role.id" >{{ role.role }}</Option>
+                                </Select>
+                            </template>
+                        </FormItem>
+                        <FormItem>
+                            <template>
+                                <Select class="form-control" v-model="data.lga_id" required placeholder="select lga">
+                                    <Option v-for="(lg, i) in lgas" :key="i" v-bind:value="lg.id" >{{ lg.lga }}</Option>
                                 </Select>
                             </template>
                         </FormItem>
@@ -109,7 +117,8 @@
                     email: '',
                     phone_no: '',
                     password: '',
-                    role_id: 0
+                    role_id: 0,
+                    lga_id: 0
                 },
                 editData:{
                     name: '',
@@ -118,6 +127,7 @@
                     role: '',
                     role_id: 0,
                 },
+                lgas: [],
                 users: [],
                 addModal: false,
                 editModal: false,
@@ -128,6 +138,7 @@
                 { text: 'Name', align: 'start', sortable: false, value: 'name'},
                 { text: 'Phone', value: 'phone', sortable: false, align: 'start'},
                 { text: 'Role', value: 'role', sortable: false, align: 'start'},
+                { text: 'LGA', value: 'lga', sortable: false, align: 'start'},
                 { text: 'Status', value: 'status', sortable: false, align: 'start'},
                 { text: 'Action', value: 'action', sortable: false, align: 'start'},
                 ],
@@ -140,10 +151,12 @@
                 if (this.data.password.trim() == '') return this.e('password is required!')
                 if (this.data.phone_no.trim() == '') return this.e('phone numer is required!')
                 if (this.data.role_id == 0) return this.e('role is required!')
+                if (this.data.lga_id == 0) return this.e('LGA is required!')
+
                 const res = await this.callApi('post', 'app/create_user', this.data)
+
                 if(res.status == 201){
                     this.fetchUser()
-                    console.log(res.data)
                     this.s('User has been added successfully!')
                     this.addModal = false
                     this.data.name = ''
@@ -151,6 +164,7 @@
                     this.data.password = ''
                     this.data.phone_no = ''
                     this.data.role_id = 0
+                    this.data.lga_id = 0
                 }
                 else{
                     if (res.status==422) {
@@ -162,6 +176,15 @@
                     else{
                         this.swr()
                     }
+                }
+            },
+            async fetchLga(){
+                const res = await this.callApi('get', 'app/get_lga')
+                if (res.status==200) {
+                    this.lgas = res.data
+                }
+                else{
+                    this.swr()
                 }
             },
             async fetchUser(){
@@ -210,6 +233,7 @@
         },
         created(){
             this.fetchUser()
+            this.fetchLga()
         }
     }
 </script>

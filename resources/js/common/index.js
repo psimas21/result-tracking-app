@@ -29,6 +29,28 @@ export default{
                 return "inactive"
             }
         },
+        async fetchRoles(){
+           // fetchRoles
+            const res = await this.callApi('get', 'app/get_roles')
+            if (res.status==200) {
+                this.roles = res.data
+            }
+            else{
+                this.swr()
+            }
+            // End fetchRole
+        },
+        async fetchParties(){
+            // fetchParty
+            const res = await this.callApi('get', 'app/get_parties')
+            if (res.status==200) {
+                this.parties = res.data
+            }
+            else{
+                this.swr()
+            }
+            // End fetchParty
+        },
 
         i (desc, title="hey") {
             this.$Notice.info({
@@ -61,25 +83,8 @@ export default{
             });
         }
     },
-    async created(){
-        // fetchRoles
-        const res = await this.callApi('get', 'app/get_roles')
-        if (res.status==200) {
-            this.roles = res.data
-        }
-        else{
-            this.swr()
-        }
-        // End fetchRole
-
-        // fetchRoles
-        const partyRes = await this.callApi('get', 'app/get_parties')
-        if (partyRes.status==200) {
-            this.parties = partyRes.data
-        }
-        else{
-            this.swr()
-        }
-        // End fetchRole
-    }
+    created() {
+        this.fetchRoles()
+        this.fetchParties()
+    },
 }

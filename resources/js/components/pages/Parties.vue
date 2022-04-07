@@ -77,7 +77,7 @@
                 if (this.data.party_name.trim() == '') return this.e('Party name is required!')
                 const res = await this.callApi('post', 'app/create_party', this.data)
                 if(res.status == 201){
-                    this.parties.unshift(res.data)
+                    this.fetchParties();
                     this.s('Party has been added successfully!')
                     this.addModal = false
                     this.data.party_name = ''
@@ -96,7 +96,7 @@
             async disableParty(){
                 const res = await this.callApi('post', 'app/disable_party', this.disableData)
                 if(res.status == 200){
-                    this.parties.splice(this.index, 1)
+                     this.fetchParties();
                     this.s('Party disabled successfully!')
                     this.disableModal = false
                 }
@@ -114,5 +114,8 @@
                 this.index = index
             }
         },
+        created(){
+            this.fetchParties();
+        }
     }
 </script>

@@ -21,12 +21,14 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('phone_no')->unique();
             $table->unsignedBigInteger('role_id')->nullable();
+            $table->unsignedBigInteger('lga_id')->nullable();
             $table->rememberToken();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
         Schema::table('users', function (Blueprint $table){
             $table->foreign('role_id')->references('id')->on('roles');
+            $table->foreign('lga_id')->references('id')->on('lgas');
          });
 
     }

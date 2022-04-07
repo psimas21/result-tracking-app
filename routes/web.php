@@ -22,9 +22,9 @@ Route::any('/{any}', function () {
 });
 
 // CODES FOR ROLES ROUTE
-Route::post('app/create_role','AdminController@addRole');
-Route::get('app/get_roles','AdminController@getRole');
-Route::post('app/disable_role','AdminController@disableRole');
+Route::post('app/create_role','RoleController@addRole');
+Route::get('app/get_roles','RoleController@getRole');
+Route::post('app/disable_role','RoleController@disableRole');
 // END CODES FOR ROLES ROUTE
 
 // CODES FOR USER ROUTEs
@@ -33,8 +33,19 @@ Route::get('app/get_users','AdminController@getUser');
 Route::post('app/edit_user','AdminController@editUser');
 // END CODES FOR ROLES ROUTE
 
-// CODES FOR ROLES ROUTE
-Route::post('app/create_party','AdminController@addParty');
-Route::get('app/get_parties','AdminController@getParty');
-Route::post('app/disable_party','AdminController@disableParty');
-// END CODES FOR ROLES ROUTE
+// CODES FOR PARTY ROUTE
+Route::post('app/create_party','PartyController@addParty');
+Route::get('app/get_parties','PartyController@getParty');
+Route::post('app/disable_party','PartyController@disableParty');
+// END CODES FOR PARTY ROUTE
+
+// CODES FOR LGA, WARD AND PU ROUTE
+Route::get('app/get_lga','LgaController@getLga');
+Route::get('app/get_ward/{lga_id}','WardController@getWard');
+Route::get('app/get_pus/{ward_id}/{lga_id}','PUController@getPU');
+// END CODES FOR LGA, WARD AND PU ROUTE
+
+// CODES FOR RESULT
+Route::post('app/create_result','ResultController@addResult');
+Route::get('app/get_result','ResultController@index');
+// END CODES FOR RESULT

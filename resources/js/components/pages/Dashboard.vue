@@ -1,11 +1,28 @@
 <template>
-    <h1>Hello Dashboard</h1>
+    <v-app>
+        <v-container>
+            <v-row>
+               <h1>Welcome!</h1>
+               <Select v-model="selectedVal" @change="onChange">
+                   <Option value="1">One</Option>
+                   <Option value="2">Two</Option>
+               </Select>
+            </v-row>
+        </v-container>
+    </v-app>
 </template>
 
-<script>
+<script setup>
     export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
+        data() {
+            return{
+                selectedVal: '',
+            }
+        },
+        methods: {
+            onChange(){
+                console.log(this.selectedVal)
+            }
+        },
     }
 </script>

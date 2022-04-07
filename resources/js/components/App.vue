@@ -8,7 +8,7 @@
               <v-list-item-title class="text-h6">
                 Sulaiman Idris
               </v-list-item-title>
-              <v-list-item-subtitle>Admin II</v-list-item-subtitle>
+              <!-- <v-list-item-subtitle>Admin II</v-list-item-subtitle> -->
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -53,6 +53,7 @@
         { title: 'Manage Roles', icon: 'mdi-order-bool-descending-variant', route: 'roles' },
         { title: 'Manage Users', icon: 'mdi-account-cog', route: 'users' },
         { title: 'Manage Parties', icon: 'mdi-diving-scuba-flag', route: 'parties' },
+        { title: 'Result Upload', icon: 'mdi-account-multiple', route: 'result' },
         ]
       }
     },

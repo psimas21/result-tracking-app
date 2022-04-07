@@ -8,37 +8,43 @@
  import 'view-design/dist/styles/iview.css';
  import VueRouter from 'vue-router';
 
+ Vue.use(ViewUI);
  Vue.mixin(common)
  Vue.use(VueRouter);
- Vue.use(ViewUI);
 
 import Dashboard from './components/pages/Dashboard'
 import Roles from './components/pages/Roles'
 import Users from './components/pages/Users'
 import Parties from './components/pages/Parties'
+import Result from './components/pages/Result'
 
   const router = new VueRouter({
      mode: 'history',
      routes: [
          {
-             path: '/',
+             path: '/home',
              name: 'home',
              component: Dashboard
          },
          {
-             path: '/',
+             path: '/roles',
              name: 'roles',
              component: Roles
          },
          {
-             path: '/',
+             path: '/users',
              name: 'users',
              component: Users
          },
          {
-             path: '/',
+             path: '/parties',
              name: 'parties',
              component: Parties
+         },
+         {
+             path: '/result',
+             name: 'result',
+             component: Result
          },
      ],
   });
